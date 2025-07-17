@@ -4,6 +4,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { Advisor } from '@/types';
 import styles from './AdvisorTable.module.css';
+import Link from 'next/link';
+import { pathsRoutesAPI } from '@/utils';
 
 type AdvisorTableProps = {
   advisors: Advisor[];
@@ -100,7 +102,11 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
               <tr key={advisor.id}>
                 <td>{advisor.name}</td>
                 <td>{advisor.income}</td>
-                <td>Edit</td>
+                <td>
+                  <Link href={`${pathsRoutesAPI.advisorsPage}/${advisor.id}`}>
+                    Edit
+                  </Link>{' '}
+                </td>
               </tr>
             ))}
           </tbody>

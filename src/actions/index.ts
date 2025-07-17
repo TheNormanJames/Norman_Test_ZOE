@@ -1,4 +1,5 @@
 'use server';
+import { pathsRoutesAPI } from '@/utils';
 import { redirect } from 'next/navigation';
 
 export async function getFormDataHome(formData: FormData) {
@@ -18,5 +19,24 @@ export async function getFormDataHome(formData: FormData) {
   }
 
   // Redirigir con el parámetro
-  redirect(`/dashboard?income=${incomeNumber}`);
+  redirect(`${pathsRoutesAPI.advisorsPage}?income=${incomeNumber}`);
+}
+
+export async function deleteAdvisor(id: number) {
+  try {
+    const response = await fetch(
+      `${pathsRoutesAPI.mainRoute}${pathsRoutesAPI.advisorAPI}/${id}`,
+      {
+        method: 'DELETE',
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(errorText || 'Error to Delete Advisor');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
 }

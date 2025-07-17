@@ -3,6 +3,7 @@ import styles from './Dashboard.module.css';
 import { Advisor } from '@/types';
 import { pathsRoutesAPI } from '../../utils/index';
 import AdvisorTable from '@/components/dashboard/AdvisorTable';
+// import AdvisorTable from '@/components/dashboard/AdvisorTable';
 
 type DashboardPageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -24,7 +25,7 @@ export default async function DashboardPage({
   // console.log(income);
 
   const respuesta = await fetch(
-    pathsRoutesAPI.mainRoute + pathsRoutesAPI.advisor
+    pathsRoutesAPI.mainRoute + pathsRoutesAPI.advisorAPI
   );
   const data = await respuesta.json();
   // console.log(data);

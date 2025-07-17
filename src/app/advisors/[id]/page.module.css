@@ -1,0 +1,87 @@
+.mainContainer {
+ position: relative;
+ width: min(90%, 1024px);
+ margin-inline: auto;
+ background-color: var(--white);
+ padding: 2.5rem;
+ border-radius: var(--borderRadius);
+ color: var(--color_TextParagraph);
+
+ /* className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" */
+
+ .btnContainer {
+  display: flex;
+  position: absolute;
+  gap: 1.5rem;
+  top: 2.5rem;
+  right: 2.5rem;
+ }
+
+ .btnDelete {
+  background-color: #f67574;
+  border: none;
+  color: var(--white);
+  padding: 1em 1.4em;
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+
+  &:hover {
+   background-color: #b95858;
+  }
+ }
+
+ .btnEdit {
+  background-color: transparent;
+
+  border: 1px solid var(--primaryColor);
+  color: var(--primaryColor);
+  padding: 1em 1.4em;
+  border-radius: var(--borderRadius);
+  cursor: pointer;
+
+  &:hover {
+   background-color: var(--primaryColor);
+   color: var(--white);
+  }
+ }
+
+ .avatar {
+  border-radius: 100%;
+  margin-bottom: 16px;
+ }
+
+ .advisorHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  margin-bottom: 2rem;
+ }
+
+ .name {
+  font-weight: 900;
+  font-size: clamp(32px, 2vw + .5rem, 32px);
+  color: var(--primaryTextColor);
+ }
+
+ .address {}
+
+ .advisorDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+ }
+
+ .advisorDetail {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+   font-size: clamp(20px, 2vw + .5rem, 20px);
+  }
+ }
+
+}

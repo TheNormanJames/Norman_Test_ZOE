@@ -1,6 +1,7 @@
 export const pathsRoutesAPI = {
   mainRoute: 'http://localhost:3001',
-  advisor: '/advisor',
+  advisorsPage: '/advisors',
+  advisorAPI: '/advisor',
 };
 
 export const formatIncome = (income: number) => {
