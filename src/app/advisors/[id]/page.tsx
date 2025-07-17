@@ -15,7 +15,7 @@ export default async function AdvisorPage({
   searchParams: { edit?: string };
 }) {
   const advisorDetails = await fetch(
-    pathsRoutesAPI.mainRoute + pathsRoutesAPI.advisorAPI + `/${params.id}`
+    pathsRoutesAPI.mainRouteAPI + pathsRoutesAPI.advisorAPI + `/${params.id}`
   );
   const data: Advisor = await advisorDetails.json();
   console.log(data);
@@ -76,7 +76,7 @@ export default async function AdvisorPage({
           </div>
         </div>
       </main>
-      {searchParams.edit === 'true' && <ModalEditAdvisor />}
+      {searchParams.edit === 'true' && <ModalEditAdvisor data={data} />}
     </>
   );
 }

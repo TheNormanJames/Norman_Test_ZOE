@@ -25,7 +25,7 @@ export async function getFormDataHome(formData: FormData) {
 export async function deleteAdvisor(id: number) {
   try {
     const response = await fetch(
-      `${pathsRoutesAPI.mainRoute}${pathsRoutesAPI.advisorAPI}/${id}`,
+      `${pathsRoutesAPI.mainRouteAPI}${pathsRoutesAPI.advisorAPI}/${id}`,
       {
         method: 'DELETE',
       }

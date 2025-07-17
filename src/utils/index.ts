@@ -1,6 +1,7 @@
 export const pathsRoutesAPI = {
-  mainRoute: 'http://localhost:3001',
+  mainRoutePage: 'http://localhost:3000',
   advisorsPage: '/advisors',
+  mainRouteAPI: 'http://localhost:3001',
   advisorAPI: '/advisor',
 };
 

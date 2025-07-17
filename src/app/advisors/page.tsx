@@ -25,7 +25,7 @@ export default async function DashboardPage({
   // console.log(income);
 
   const respuesta = await fetch(
-    pathsRoutesAPI.mainRoute + pathsRoutesAPI.advisorAPI
+    pathsRoutesAPI.mainRouteAPI + pathsRoutesAPI.advisorAPI
   );
   const data = await respuesta.json();
   // console.log(data);
