@@ -1,42 +1,102 @@
+import { redirect } from 'next/navigation';
+import styles from './Dashboard.module.css';
+import { Advisor } from '@/types';
+import { pathsRoutesAPI } from '../../utils/index';
 import AdvisorCard from '@/components/AdvisorsCard';
-import Link from 'next/link';
 
-export default async function DashoboardPage({ searchParams }) {
-  const respuesta = await fetch('http://localhost:3001/advisor');
+type DashboardPageProps = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function DashboardPage({
+  searchParams,
+}: DashboardPageProps) {
+  const { income: incomeParam } = searchParams;
+  // console.log(incomeParam, 'incomeParam');
+  if (incomeParam === undefined) {
+    redirect('/');
+  }
+  const income = +incomeParam;
+  if (isNaN(income)) {
+    redirect('/');
+  }
+
+  // console.log(income);
+
+  const respuesta = await fetch(
+    pathsRoutesAPI.mainRoute + pathsRoutesAPI.advisor
+  );
   const data = await respuesta.json();
 
-  const { income } = await searchParams;
+  if (!respuesta.ok) {
+    return 'Hubo un error con la solicitud de la API';
+  }
 
-  const MIN_INCOME = +income - 10000;
-  const MAX_INCOME = +income + 10000;
+  // console.log(typeof data, 'typeof');
 
-  console.log(MIN_INCOME);
-  console.log(MAX_INCOME);
+  const MIN_INCOME = income - 10000;
+  const MAX_INCOME = income + 10000;
 
-  const advisors = data.filter(
-    (advisorsElement) =>
-      advisorsElement.income >= MIN_INCOME &&
-      advisorsElement.income <= MAX_INCOME
+  const filteredAdvisors = await data.filter(
+    (advisor: Advisor) =>
+      advisor.income >= MIN_INCOME && advisor.income <= MAX_INCOME
   );
+  // console.log(filteredAdvisors);
 
-  // console.log(advisors);
+  //   const steps = 2;
+  //   const pagination = 1;
 
-  const steps = 2;
-  const pagination = 1;
+  //   const advisorsPerPage = advisors.slice(0, steps);
 
-  const advisorsPerPage = advisors.slice(0, steps);
-
-  console.log(advisorsPerPage);
+  //   console.log(advisorsPerPage);
 
   return (
-    <>
-      <h1>Dashboard</h1>
-      <Link href={`dashboard/create`}> Create Advisor</Link>
-      <div className="contenedorDashboard">
-        {advisorsPerPage.map((advisor) => (
-          <AdvisorCard key={advisor.id} advisor={advisor} />
-        ))}
-      </div>
-    </>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.heading}>Advisors</h1>
+        <a href="/new-advisor" className={styles.addButton}>
+          + Add New Advisor
+        </a>
+      </header>
+
+      <main className={styles.main}>
+        <div className={styles.topBarMain}>
+          <h2 className={styles.subheading}>Advisors Found</h2>
+          <input
+            className={styles.searchButton}
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search..."
+          />
+        </div>
+
+        {filteredAdvisors.length === 0 ? (
+          <div className={styles.noResults}>
+            <p>No available Advisors based on the provided income.</p>
+            <p>Please try a different income value.</p>
+            <a href="/" className={styles.tryAgainButton}>
+              Try Different Income
+            </a>
+          </div>
+        ) : (
+          <>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Advisor Name</th>
+                  <th>Income</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredAdvisors.map((advisor) => (
+                  <AdvisorCard key={advisor.id} advisor={advisor} />
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+      </main>
+    </div>
   );
 }

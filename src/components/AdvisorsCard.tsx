@@ -1,11 +1,15 @@
-export default function AdvisorCard ({advisor}){
-    return (
-        <>
-        <div className="containerAdvisor">
+import { formatIncome } from '@/utils';
+import styles from './Advisor.module.css';
 
-        
-        <p>{advisor.name}</p>
-        <p>{advisor.income}</p>
-        </div></>
-    )
+export default function AdvisorCard({ advisor }) {
+  console.log(advisor, 'advisor');
+
+  return (
+    <>
+      <tr key={advisor.advisor} className={styles.advisor}>
+        <td>{advisor.name}</td>
+        <td>{formatIncome(advisor.income)}</td>
+      </tr>
+    </>
+  );
 }

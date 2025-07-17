@@ -1,0 +1,105 @@
+.container {
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ max-width: 334px;
+ margin-inline: auto;
+}
+
+.header {
+ text-align: center;
+ margin-bottom: 3rem;
+}
+
+.logo {
+ position: relative;
+ height: 58px;
+ width: 133px;
+ margin-bottom: 44px;
+}
+
+.iconHome {
+ width: 68px;
+ height: 68px;
+ position: relative;
+ margin-inline: auto;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-bottom: 24px;
+}
+
+.main {
+ text-align: center;
+}
+
+.heading {
+ font-size: clamp(24px, 2vw + .5rem, 24px);
+ color: var(--primaryTextColor);
+ margin-bottom: 8px;
+}
+
+.description {
+ margin-bottom: 40px;
+ font-weight: normal;
+ font-size: clamp(16px, 2vw + .5rem, 16px);
+ color: var(--primaryTextColor);
+}
+
+.form {
+ position: relative;
+ text-align: left;
+
+ label {
+  display: block;
+  color: var(--color_TextParagraph);
+  margin-bottom: 9px;
+ }
+
+ .incomeInput {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #DCDCDC;
+  border-radius: var(--borderRadius);
+  margin-bottom: 36px;
+
+  &::before {
+   content: '$';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 50px;
+   height: 50px;
+   display: block;
+  }
+ }
+}
+
+.submitBtn {
+ position: relative;
+ inset: 0;
+ padding: 1rem;
+ display: block;
+ background-color: var(--primaryColor);
+ border: 0;
+ color: var(--white);
+ padding: 1em 1.8em;
+ border-radius: var(--borderRadius);
+ cursor: pointer;
+ margin-inline: auto;
+
+ &:hover {
+  background-color: color-mix(in srgb, var(--primaryColor) 80%, transparent);
+
+
+ }
+
+ &::after {
+  content: 'O';
+  display: block;
+ }
+}

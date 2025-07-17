@@ -1,0 +1,10 @@
+.advisor {
+ width: 100%;
+ /* display: flex; */
+ display: grid;
+
+ justify-content: space-between;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ margin-bottom: 1em;
+ color: var(--color_TextParagraph);
+}
