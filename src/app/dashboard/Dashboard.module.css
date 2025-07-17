@@ -50,11 +50,7 @@
  padding: 2rem;
 }
 
-.topBarMain {
- display: flex;
- justify-content: space-between;
- align-items: center;
-}
+
 
 .searchButton {
  background: #fff;
@@ -70,11 +66,7 @@
  margin-bottom: 0.5rem;
 }
 
-.subheading {
- font-size: 1.2rem;
- color: #7f8c8d;
- margin-bottom: 2rem;
-}
+
 
 .table {
  width: 100%;

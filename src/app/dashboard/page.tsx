@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import styles from './Dashboard.module.css';
 import { Advisor } from '@/types';
 import { pathsRoutesAPI } from '../../utils/index';
-import AdvisorCard from '@/components/AdvisorsCard';
+import AdvisorTable from '@/components/dashboard/AdvisorTable';
 
 type DashboardPageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -27,6 +27,7 @@ export default async function DashboardPage({
     pathsRoutesAPI.mainRoute + pathsRoutesAPI.advisor
   );
   const data = await respuesta.json();
+  // console.log(data);
 
   if (!respuesta.ok) {
     return 'Hubo un error con la solicitud de la API';
@@ -41,14 +42,6 @@ export default async function DashboardPage({
     (advisor: Advisor) =>
       advisor.income >= MIN_INCOME && advisor.income <= MAX_INCOME
   );
-  // console.log(filteredAdvisors);
-
-  //   const steps = 2;
-  //   const pagination = 1;
-
-  //   const advisorsPerPage = advisors.slice(0, steps);
-
-  //   console.log(advisorsPerPage);
 
   return (
     <div className={styles.container}>
@@ -60,17 +53,6 @@ export default async function DashboardPage({
       </header>
 
       <main className={styles.main}>
-        <div className={styles.topBarMain}>
-          <h2 className={styles.subheading}>Advisors Found</h2>
-          <input
-            className={styles.searchButton}
-            type="search"
-            name="search"
-            id="search"
-            placeholder="Search..."
-          />
-        </div>
-
         {filteredAdvisors.length === 0 ? (
           <div className={styles.noResults}>
             <p>No available Advisors based on the provided income.</p>
@@ -80,21 +62,7 @@ export default async function DashboardPage({
             </a>
           </div>
         ) : (
-          <>
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Advisor Name</th>
-                  <th>Income</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredAdvisors.map((advisor) => (
-                  <AdvisorCard key={advisor.id} advisor={advisor} />
-                ))}
-              </tbody>
-            </table>
-          </>
+          <AdvisorTable advisors={filteredAdvisors} income={income} />
         )}
       </main>
     </div>

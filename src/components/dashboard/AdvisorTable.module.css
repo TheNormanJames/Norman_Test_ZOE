@@ -1,0 +1,169 @@
+.container {
+ width: 100%;
+}
+
+.topBarMain {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 1em;
+}
+
+.subheading {
+ font-size: clamp(20px, 2vw + .5rem, 20px);
+ font-weight: 500;
+ color: var(--primaryTextColor);
+}
+
+.searchInput {
+ padding: 10px;
+ border: 1px solid #ddd;
+ border-radius: 4px;
+ font-size: 1rem;
+}
+
+.tableContainer {
+ overflow-x: auto;
+}
+
+.table {
+ width: 100%;
+ border-collapse: collapse;
+}
+
+.tableHeader {
+ background-color: #f8f9fa;
+ padding: 12px 15px;
+ text-align: left;
+ font-weight: 600;
+ color: #495057;
+ cursor: pointer;
+ border-bottom: 2px solid #e9ecef;
+}
+
+.headerContent {
+ display: flex;
+ align-items: center;
+ gap: 8px;
+}
+
+.tableRow {
+ border-bottom: 1px solid #e9ecef;
+ transition: background-color 0.2s;
+}
+
+.tableRow:hover {
+ background-color: #f8f9fa;
+}
+
+.tableCell {
+ padding: 12px 15px;
+ text-align: left;
+}
+
+.cellContent {
+ padding: 5px 0;
+}
+
+.detailsButton {
+ background: none;
+ border: none;
+ color: #3498db;
+ cursor: pointer;
+ padding: 5px;
+ font-size: 0.9rem;
+}
+
+.detailsButton:hover {
+ text-decoration: underline;
+}
+
+.paginationContainer {
+ position: relative;
+ display: flex;
+ /* flex-direction: column; */
+ justify-content: center;
+ align-items: center;
+ margin-top: 2rem;
+ gap: 1rem;
+}
+
+.paginationInfo {
+ position: absolute;
+ left: 0;
+ color: var(--color_TextParagraph);
+}
+
+.paginationButtons {
+ display: flex;
+ align-items: center;
+ gap: 0.5rem;
+}
+
+.paginationArrow {
+ border: none;
+ background-color: transparent;
+ font-size: 1.5em;
+ cursor: pointer;
+ transition: scale .3s ease-in-out;
+
+ &:hover {
+  scale: 1.2;
+ }
+
+ &:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+ }
+}
+
+.pageNumbers {
+ display: flex;
+ gap: 0.25rem;
+}
+
+.paginationNumber {
+ padding: 0.5rem 0.75rem;
+ border: 1px solid #ddd;
+ border-radius: 4px;
+ background: white;
+ cursor: pointer;
+ min-width: 40px;
+}
+
+.paginationNumber:hover {
+ background: #f5f5f5;
+}
+
+.activePage {
+ background-color: #3498db;
+ color: white;
+ border-color: #3498db;
+}
+
+.activePage:hover {
+ background-color: #2980b9;
+}
+
+.paginationEllipsis {
+ padding: 0.5rem;
+ display: flex;
+ align-items: center;
+}
+
+.paginationButton {
+ padding: 0.5rem 1rem;
+ border: 1px solid #ddd;
+ border-radius: 4px;
+ background: white;
+ cursor: pointer;
+}
+
+.paginationButton:hover:not(:disabled) {
+ background: #f5f5f5;
+}
+
+.paginationButton:disabled {
+ opacity: 0.5;
+ cursor: not-allowed;
+}
