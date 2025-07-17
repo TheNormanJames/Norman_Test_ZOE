@@ -44,3 +44,76 @@ a {
   color-scheme: dark;
  }
 } */
+
+
+.inputBtn {
+ position: relative;
+ display: block;
+ width: 100%;
+ padding: 1em;
+ border: 1px solid #DCDCDC;
+ border-radius: var(--borderRadius);
+}
+
+
+.btnDelete {
+ background-color: #f67574;
+ border: none;
+ color: var(--white);
+ padding: 1em 1.4em;
+ border-radius: var(--borderRadius);
+ cursor: pointer;
+
+ &:hover {
+  background-color: #b95858;
+ }
+}
+
+.btnEdit {
+ background-color: transparent;
+
+ border: 1px solid var(--primaryColor);
+ color: var(--primaryColor);
+ padding: 1em 1.4em;
+ border-radius: var(--borderRadius);
+ cursor: pointer;
+
+ &:hover {
+  background-color: var(--primaryColor);
+  color: var(--white);
+ }
+}
+
+.btn--ghost {
+ border: 0;
+ background-color: transparent;
+ color: var(--primaryColor);
+ font-weight: 400;
+ font-size: clamp(14px, 2vw + .5rem, 14px);
+ cursor: pointer;
+ padding: 1em 1.8em;
+ border-radius: var(--borderRadius);
+ border: 1px solid transparent;
+
+ &:hover {
+  border: 1px solid var(--primaryColor);
+ }
+}
+
+.btn {
+ position: relative;
+ inset: 0;
+ padding: 1rem;
+ /* display: block; */
+ background-color: var(--primaryColor);
+ border: 0;
+ color: var(--white);
+ padding: 1em 1.8em;
+ border-radius: var(--borderRadius);
+ cursor: pointer;
+ /* margin-inline: auto; */
+
+ &:hover {
+  background-color: color-mix(in srgb, var(--primaryColor) 80%, transparent);
+ }
+}

@@ -1,0 +1,71 @@
+.modal {
+ position: absolute;
+ inset: 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: #747d9ba2;
+
+ .modalContent {
+  background-color: var(--white);
+  width: min(90%, 600px);
+  margin-inline: auto;
+  color: var(--primaryTextColor);
+  border-radius: var(--borderRadius);
+ }
+
+ .modalName {
+  padding: 1em;
+  font-size: clamp(16px, 2vw + .5rem, 16px);
+  font-weight: 500;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+ }
+
+ .modalDetails {
+  padding: 3rem;
+ }
+
+ .imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 1em;
+  gap: 1rem;
+ }
+
+ .advisorIMG {
+  border-radius: 100%;
+ }
+
+ .modalForm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5em;
+
+  >label {
+   flex-basis: 200px;
+   flex-grow: 1;
+   max-width: 240px;
+
+   &:last-child {
+    max-width: initial;
+   }
+
+  }
+
+  input,
+  select {
+   width: 100%;
+   margin-top: .5rem;
+  }
+ }
+
+ .footer {
+  padding: 1em;
+  display: flex;
+  justify-content: end;
+  gap: 1em;
+  border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+ }
+}

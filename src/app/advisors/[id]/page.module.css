@@ -17,33 +17,7 @@
   right: 2.5rem;
  }
 
- .btnDelete {
-  background-color: #f67574;
-  border: none;
-  color: var(--white);
-  padding: 1em 1.4em;
-  border-radius: var(--borderRadius);
-  cursor: pointer;
 
-  &:hover {
-   background-color: #b95858;
-  }
- }
-
- .btnEdit {
-  background-color: transparent;
-
-  border: 1px solid var(--primaryColor);
-  color: var(--primaryColor);
-  padding: 1em 1.4em;
-  border-radius: var(--borderRadius);
-  cursor: pointer;
-
-  &:hover {
-   background-color: var(--primaryColor);
-   color: var(--white);
-  }
- }
 
  .avatar {
   border-radius: 100%;
