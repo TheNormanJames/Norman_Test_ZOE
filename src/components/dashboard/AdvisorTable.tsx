@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Advisor } from '@/types';
 import styles from './AdvisorTable.module.css';
 import Link from 'next/link';
 import { pathsRoutesProject } from '@/utils';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 type AdvisorTableProps = {
   advisors: Advisor[];
@@ -14,13 +15,20 @@ type AdvisorTableProps = {
 const ITEMS_PER_PAGE = 2;
 
 export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
+  const router = useRouter();
+  const paramsURL = useSearchParams();
   const [searchParams, setSearchParams] = useState('');
   const [typeSort, setTypeSort] = useState({
     key: 'name',
     direction: 'asc',
   });
-  // console.log(advisors);
-  // let filterAdvisors = [...advisors];
+
+  useEffect(() => {
+    setTypeSort({
+      key: paramsURL.get('sort') || 'name',
+      direction: paramsURL.get('order') || 'asc',
+    });
+  }, []);
 
   const handleSearch = (text: string) => {
     setSearchParams(text);
@@ -54,12 +62,19 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
 
     return result;
   };
-
+  const updateParams = () => {
+    const params = new URLSearchParams(paramsURL.toString());
+    params.set('order', typeSort.direction);
+    params.set('sort', typeSort.key);
+    router.push(`/advisors?${params.toString()}`);
+    // console.log(params.toString());
+  };
   const handleSort = (key: keyof Advisor) => {
     setTypeSort({
       key: key,
       direction: typeSort.direction === 'asc' ? 'desc' : 'asc',
     });
+    updateParams();
   };
   return (
     <div className={styles.container}>
