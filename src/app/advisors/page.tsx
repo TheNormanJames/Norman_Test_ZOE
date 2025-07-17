@@ -45,19 +45,6 @@ export default async function DashboardPage({
       advisor.income >= MIN_INCOME && advisor.income <= MAX_INCOME
   );
 
-  const emptyAdvisor = {
-    id: 0,
-    avatar: '',
-    name: ' ',
-    idNumber: '',
-    income: '',
-    education: '',
-    address: '',
-    title: '',
-    email: '',
-    phone: '',
-    yearsOfExperience: '',
-  };
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -79,7 +66,7 @@ export default async function DashboardPage({
         )}
       </main>
       {searchParams.new_advisor === 'true' && (
-        <ModalFormAdvisor isEditMode={false} data={emptyAdvisor} />
+        <ModalFormAdvisor isEditMode={false} data={{}} />
       )}
     </div>
   );

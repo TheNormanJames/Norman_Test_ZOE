@@ -4,7 +4,8 @@ import { Advisor } from '../../types/index';
 import { editActionAdvisor } from '@/actions/editActionAdvisor';
 import { redirect } from 'next/navigation';
 import { pathsRoutesProject } from '@/utils';
-import { createActionAdvisor } from '@/actions/editActionAdvisor copy';
+import { createActionAdvisor } from '@/actions/createActionAdvisor';
+import SubmitButton from '../SubmitButton';
 
 type ModalFormAdvisorProps = {
   data?: Advisor;
@@ -24,18 +25,24 @@ export default function ModalFormAdvisor({
       );
     } else {
       await createActionAdvisor(formData);
-      redirect(
-        `${pathsRoutesProject.mainRoutePage}${pathsRoutesProject.advisorsPage}`
-      );
+      // console.log('asdfasdf');
+
+      // redirect(
+      //   `${pathsRoutesProject.mainRoutePage}${pathsRoutesProject.advisorsPage}`
+      // );
     }
   };
+  const action =
+    isEditMode && data?.id
+      ? (formData: FormData) => editActionAdvisor(data.id, formData)
+      : createActionAdvisor;
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
         <h3 className={styles.modalName}>
           {isEditMode ? 'Edit' : 'Create'} Advisor Information
         </h3>
-        <form action={handleSubmit}>
+        <form action={isEditMode ? handleSubmit : ''}>
           <div className={styles.modalDetails}>
             <div className={styles.imageContainer}>
               {/* <div className={styles.advisorIMG}> */}
@@ -45,9 +52,16 @@ export default function ModalFormAdvisor({
                 className={styles.advisorIMG}
               />
               {/* </div> */}
-              <button type="button" className="btnEdit">
+              {/* <button type="button" className="btnEdit">
                 Upload Picture
-              </button>
+              </button> */}
+              <input
+                type="file"
+                name="avatar"
+                id=""
+                className="btnEdit"
+                // defaultValue={isEditMode ? data?.avatar : '/IconHome.svg'}
+              />
               <button type="button" className="btnDelete">
                 remove
               </button>
@@ -155,9 +169,15 @@ export default function ModalFormAdvisor({
           </div>
           <footer className={styles.footer}>
             <BtnBack />
-            <button type="submit" className="btn">
-              {isEditMode ? 'Save Changes' : 'Create Advisor'}
-            </button>
+            {isEditMode ? (
+              <button type="submit" className="btn">
+                {isEditMode ? 'Save Changes' : 'Create Advisor'}
+              </button>
+            ) : (
+              <SubmitButton action={action}>
+                {isEditMode ? 'Save Changes' : 'Create Advisor'}
+              </SubmitButton>
+            )}
           </footer>
         </form>
       </div>
