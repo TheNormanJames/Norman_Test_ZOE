@@ -5,11 +5,14 @@ import style from './page.module.css';
 import { redirect } from 'next/navigation';
 import { deleteAdvisor } from '@/actions';
 import ModalEditAdvisor from '@/components/advisor/ModalEditAdvisor';
+import Link from 'next/link';
 
 export default async function AdvisorPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: { edit?: string };
 }) {
   const advisorDetails = await fetch(
     pathsRoutesAPI.mainRoute + pathsRoutesAPI.advisorAPI + `/${params.id}`
@@ -22,13 +25,6 @@ export default async function AdvisorPage({
     await deleteAdvisor(data.id);
     redirect(pathsRoutesAPI.advisorsPage);
   };
-  const handleEdit = async () => {
-    'use server';
-  };
-  // const deleteAdvisor = async () => {
-  //   'use server';
-  // };
-
   return (
     <>
       <main className={style.mainContainer}>
@@ -38,11 +34,14 @@ export default async function AdvisorPage({
               Delete
             </button>
           </form>
-          <form action={handleEdit}>
+          {/* <form action={handleEdit}>
             <button type="submit" className={'btnEdit'}>
               Edit Advisor
             </button>
-          </form>
+          </form> */}
+          <Link href={`?edit=true`} className={'btnEdit'}>
+            Edit Advisor
+          </Link>
         </div>
         <img src={data.avatar} className={style.avatar} alt="IconoPersona" />
         <div className={style.advisorHeader}>
@@ -77,7 +76,7 @@ export default async function AdvisorPage({
           </div>
         </div>
       </main>
-      <ModalEditAdvisor />
+      {searchParams.edit === 'true' && <ModalEditAdvisor />}
     </>
   );
 }

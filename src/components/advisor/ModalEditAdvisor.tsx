@@ -1,3 +1,4 @@
+import BtnBack from './BtnBack';
 import styles from './ModalEditAdvisor.module.css';
 
 export default function ModalEditAdvisor() {
@@ -91,9 +92,7 @@ export default function ModalEditAdvisor() {
           </div>
         </div>
         <footer className={styles.footer}>
-          <button type="button" className="btn--ghost">
-            Go Back
-          </button>
+          <BtnBack />
           <button type="button" className="btn">
             Save Changes
           </button>
