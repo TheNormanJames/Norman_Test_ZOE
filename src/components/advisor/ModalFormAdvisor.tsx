@@ -1,20 +1,20 @@
 import BtnBack from './BtnBack';
-import styles from './ModalEditAdvisor.module.css';
+import styles from './ModalFormAdvisor.module.css';
 import { Advisor } from '../../types/index';
 import { editActionAdvisor } from '@/actions/editActionAdvisor';
 import { redirect } from 'next/navigation';
 import { pathsRoutesProject } from '@/utils';
 import { createActionAdvisor } from '@/actions/editActionAdvisor copy';
 
-type ModalEditAdvisorProps = {
+type ModalFormAdvisorProps = {
   data?: Advisor;
   isEditMode?: boolean;
 };
 
-export default function ModalEditAdvisor({
+export default function ModalFormAdvisor({
   data,
   isEditMode = true,
-}: ModalEditAdvisorProps) {
+}: ModalFormAdvisorProps) {
   const handleSubmit = async (formData: FormData) => {
     'use server';
     if (isEditMode && data?.id) {

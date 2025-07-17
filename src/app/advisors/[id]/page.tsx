@@ -4,7 +4,7 @@ import { Advisor } from '../../../types/index';
 import style from './page.module.css';
 import { redirect } from 'next/navigation';
 import { deleteAdvisor } from '@/actions';
-import ModalEditAdvisor from '@/components/advisor/ModalEditAdvisor';
+import ModalFormAdvisor from '@/components/advisor/ModalFormAdvisor';
 import Link from 'next/link';
 
 export default async function AdvisorPage({
@@ -79,7 +79,7 @@ export default async function AdvisorPage({
         </div>
       </main>
       {searchParams.edit === 'true' && (
-        <ModalEditAdvisor data={data} isEditMode={true} />
+        <ModalFormAdvisor data={data} isEditMode={true} />
       )}
     </>
   );

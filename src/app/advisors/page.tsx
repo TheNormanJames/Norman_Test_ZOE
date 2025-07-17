@@ -3,10 +3,9 @@ import styles from './Dashboard.module.css';
 import { Advisor } from '@/types';
 import { pathsRoutesProject } from '../../utils/index';
 import AdvisorTable from '@/components/dashboard/AdvisorTable';
-import ModalEditAdvisor from '@/components/advisor/ModalEditAdvisor';
 import OpenModalAddAdvisor from '@/components/dashboard/OpenModalAddAdvisor';
+import ModalFormAdvisor from '@/components/advisor/ModalFormAdvisor';
 // import AdvisorTable from '@/components/dashboard/AdvisorTable';
-
 type DashboardPageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
@@ -80,7 +79,7 @@ export default async function DashboardPage({
         )}
       </main>
       {searchParams.new_advisor === 'true' && (
-        <ModalEditAdvisor isEditMode={false} data={emptyAdvisor} />
+        <ModalFormAdvisor isEditMode={false} data={emptyAdvisor} />
       )}
     </div>
   );
