@@ -49,7 +49,7 @@ export default async function DashboardPage({
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.heading}>Advisors</h1>
-        <OpenModalAddAdvisor className={styles.addButton} />
+        <OpenModalAddAdvisor className={` btn`} />
       </header>
 
       <main className={styles.main}>

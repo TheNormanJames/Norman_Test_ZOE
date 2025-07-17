@@ -1,12 +1,14 @@
 .container {
  width: 100%;
+ color: var(--color_TextParagraph);
 }
 
 .topBarMain {
  display: flex;
  justify-content: space-between;
  align-items: center;
- margin-bottom: 1em;
+ /* margin-bottom: 1em; */
+ padding: 1rem 2rem;
 }
 
 .subheading {
@@ -31,14 +33,20 @@
  border-collapse: collapse;
 }
 
+
 .tableHeader {
  background-color: #f8f9fa;
- padding: 12px 15px;
+ padding: 1rem 2em;
  text-align: left;
  font-weight: 600;
  color: #495057;
  cursor: pointer;
- border-bottom: 2px solid #e9ecef;
+}
+
+.tableBody {
+ td {
+  padding: 1em 2em;
+ }
 }
 
 .headerContent {
@@ -48,49 +56,46 @@
 }
 
 .tableRow {
- border-bottom: 1px solid #e9ecef;
- transition: background-color 0.2s;
+ position: relative;
+ transition: background-color .3s;
+
+ &:hover {
+  background-color: #ebeffd;
+
+  &::after {
+   opacity: 1;
+  }
+ }
+
+ &::after {
+  content: 'See Advisor Details';
+  opacity: 0;
+  font-size: clamp(12px, 2vw + .5rem, 12px);
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  translate: -50% -50%;
+  padding: .5rem 1rem;
+  border-radius: var(--borderRadius);
+  background-color: var(--white);
+ }
 }
 
-.tableRow:hover {
- background-color: #f8f9fa;
-}
-
-.tableCell {
- padding: 12px 15px;
- text-align: left;
-}
-
-.cellContent {
- padding: 5px 0;
-}
-
-.detailsButton {
- background: none;
- border: none;
- color: #3498db;
- cursor: pointer;
- padding: 5px;
- font-size: 0.9rem;
-}
-
-.detailsButton:hover {
- text-decoration: underline;
-}
 
 .paginationContainer {
  position: relative;
  display: flex;
- /* flex-direction: column; */
  justify-content: center;
  align-items: center;
  margin-top: 2rem;
  gap: 1rem;
+ padding: 1rem 2rem;
+ border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
 
 .paginationInfo {
  position: absolute;
- left: 0;
+ left: 2rem;
  color: var(--color_TextParagraph);
 }
 
@@ -136,13 +141,13 @@
 }
 
 .activePage {
- background-color: #3498db;
+ background-color: var(--primaryColor);
  color: white;
- border-color: #3498db;
+ border-color: var(--primaryColor);
 }
 
 .activePage:hover {
- background-color: #2980b9;
+ background-color: color-mix(in srgb, var(--primaryColor) 80%, transparent);
 }
 
 .paginationEllipsis {

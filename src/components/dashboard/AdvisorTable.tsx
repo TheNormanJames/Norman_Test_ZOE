@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Advisor } from '@/types';
 import styles from './AdvisorTable.module.css';
 import Link from 'next/link';
-import { pathsRoutesProject } from '@/utils';
+import { formatIncome, pathsRoutesProject } from '@/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 type AdvisorTableProps = {
@@ -29,6 +29,9 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
       direction: paramsURL.get('order') || 'asc',
     });
   }, []);
+
+  const totalPages = Math.ceil(advisors.length / ITEMS_PER_PAGE);
+  console.log(totalPages);
 
   const handleSearch = (text: string) => {
     setSearchParams(text);
@@ -108,23 +111,23 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
                 {typeSort.key === 'income' &&
                   (typeSort.direction === 'asc' ? '↑' : '↓')}
               </th>
-              <th className={styles.tableHeader}>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            {filterAdvisors().map((advisor) => (
-              <tr key={advisor.id}>
-                <td>{advisor.name}</td>
-                <td>{advisor.income}</td>
-                <td>
-                  <Link
-                    href={`${pathsRoutesProject.advisorsPage}/${advisor.id}`}
-                  >
-                    Edit
-                  </Link>{' '}
-                </td>
-              </tr>
-            ))}
+          <tbody className={styles.tableBody}>
+            {filterAdvisors().map((advisor) => {
+              const url = `${pathsRoutesProject.advisorsPage}/${advisor.id}`;
+              return (
+                <tr
+                  key={advisor.id}
+                  className={styles.tableRow}
+                  onClick={() => router.push(url)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <td>{advisor.name}</td>
+                  <td>{formatIncome(advisor.income)}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -135,6 +138,7 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
         <div className={styles.paginationButtons}>
           <button className={styles.paginationArrow}>&#8676;</button>
           <div className={styles.pageNumbers}>
+            {totalPages}
             <button
               key="first"
               className={`${styles.paginationNumber} ${styles.activePage}`}
