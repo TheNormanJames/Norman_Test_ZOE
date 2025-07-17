@@ -1,11 +1,10 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Advisor } from '@/types';
 import styles from './AdvisorTable.module.css';
 import Link from 'next/link';
-import { pathsRoutesAPI } from '@/utils';
+import { pathsRoutesProject } from '@/utils';
 
 type AdvisorTableProps = {
   advisors: Advisor[];
@@ -30,7 +29,7 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
 
   const filterAdvisors = () => {
     let result = [...advisors];
-    console.log(result);
+    // console.log(result);
     if (typeSort) {
       if (typeSort.key === 'name') {
         result.sort((a, b) =>
@@ -56,7 +55,7 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
     return result;
   };
 
-  const handleSort = (key) => {
+  const handleSort = (key: keyof Advisor) => {
     setTypeSort({
       key: key,
       direction: typeSort.direction === 'asc' ? 'desc' : 'asc',
@@ -103,7 +102,9 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
                 <td>{advisor.name}</td>
                 <td>{advisor.income}</td>
                 <td>
-                  <Link href={`${pathsRoutesAPI.advisorsPage}/${advisor.id}`}>
+                  <Link
+                    href={`${pathsRoutesProject.advisorsPage}/${advisor.id}`}
+                  >
                     Edit
                   </Link>{' '}
                 </td>

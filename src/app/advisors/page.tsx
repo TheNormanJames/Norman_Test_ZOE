@@ -1,8 +1,10 @@
 import { redirect } from 'next/navigation';
 import styles from './Dashboard.module.css';
 import { Advisor } from '@/types';
-import { pathsRoutesAPI } from '../../utils/index';
+import { pathsRoutesProject } from '../../utils/index';
 import AdvisorTable from '@/components/dashboard/AdvisorTable';
+import ModalEditAdvisor from '@/components/advisor/ModalEditAdvisor';
+import OpenModalAddAdvisor from '@/components/dashboard/OpenModalAddAdvisor';
 // import AdvisorTable from '@/components/dashboard/AdvisorTable';
 
 type DashboardPageProps = {
@@ -25,7 +27,7 @@ export default async function DashboardPage({
   // console.log(income);
 
   const respuesta = await fetch(
-    pathsRoutesAPI.mainRouteAPI + pathsRoutesAPI.advisorAPI
+    pathsRoutesProject.mainRouteAPI + pathsRoutesProject.advisorAPI
   );
   const data = await respuesta.json();
   // console.log(data);
@@ -44,13 +46,24 @@ export default async function DashboardPage({
       advisor.income >= MIN_INCOME && advisor.income <= MAX_INCOME
   );
 
+  const emptyAdvisor = {
+    id: 0,
+    avatar: '',
+    name: ' ',
+    idNumber: '',
+    income: '',
+    education: '',
+    address: '',
+    title: '',
+    email: '',
+    phone: '',
+    yearsOfExperience: '',
+  };
   return (
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.heading}>Advisors</h1>
-        <a href="/new-advisor" className={styles.addButton}>
-          + Add New Advisor
-        </a>
+        <OpenModalAddAdvisor className={styles.addButton} />
       </header>
 
       <main className={styles.main}>
@@ -66,6 +79,9 @@ export default async function DashboardPage({
           <AdvisorTable advisors={filteredAdvisors} income={income} />
         )}
       </main>
+      {searchParams.new_advisor === 'true' && (
+        <ModalEditAdvisor isEditMode={false} data={emptyAdvisor} />
+      )}
     </div>
   );
 }

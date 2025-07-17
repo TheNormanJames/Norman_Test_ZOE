@@ -1,5 +1,5 @@
 'use server';
-import { pathsRoutesAPI } from '@/utils';
+import { pathsRoutesProject } from '@/utils';
 import { redirect } from 'next/navigation';
 
 export async function getFormDataHome(formData: FormData) {
@@ -19,13 +19,13 @@ export async function getFormDataHome(formData: FormData) {
   }
 
   // Redirigir con el parámetro
-  redirect(`${pathsRoutesAPI.advisorsPage}?income=${incomeNumber}`);
+  redirect(`${pathsRoutesProject.advisorsPage}?income=${incomeNumber}`);
 }
 
 export async function deleteAdvisor(id: number) {
   try {
     const response = await fetch(
-      `${pathsRoutesAPI.mainRouteAPI}${pathsRoutesAPI.advisorAPI}/${id}`,
+      `${pathsRoutesProject.mainRouteAPI}${pathsRoutesProject.advisorAPI}/${id}`,
       {
         method: 'DELETE',
       }

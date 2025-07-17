@@ -1,4 +1,4 @@
-import { pathsRoutesAPI } from '@/utils';
+import { pathsRoutesProject } from '@/utils';
 import React from 'react';
 import { Advisor } from '../../../types/index';
 import style from './page.module.css';
@@ -15,7 +15,9 @@ export default async function AdvisorPage({
   searchParams: { edit?: string };
 }) {
   const advisorDetails = await fetch(
-    pathsRoutesAPI.mainRouteAPI + pathsRoutesAPI.advisorAPI + `/${params.id}`
+    pathsRoutesProject.mainRouteAPI +
+      pathsRoutesProject.advisorAPI +
+      `/${params.id}`
   );
   const data: Advisor = await advisorDetails.json();
   console.log(data);
@@ -23,7 +25,7 @@ export default async function AdvisorPage({
   const handleDelete = async () => {
     'use server';
     await deleteAdvisor(data.id);
-    redirect(pathsRoutesAPI.advisorsPage);
+    redirect(pathsRoutesProject.advisorsPage);
   };
   return (
     <>
@@ -76,7 +78,9 @@ export default async function AdvisorPage({
           </div>
         </div>
       </main>
-      {searchParams.edit === 'true' && <ModalEditAdvisor data={data} />}
+      {searchParams.edit === 'true' && (
+        <ModalEditAdvisor data={data} isEditMode={true} />
+      )}
     </>
   );
 }

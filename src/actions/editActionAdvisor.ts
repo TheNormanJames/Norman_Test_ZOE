@@ -1,6 +1,6 @@
 'use server';
 
-import { pathsRoutesAPI } from '@/utils';
+import { pathsRoutesProject } from '@/utils';
 
 export async function editActionAdvisor(id: number, formData: FormData) {
   try {
@@ -16,7 +16,7 @@ export async function editActionAdvisor(id: number, formData: FormData) {
     };
 
     const response = await fetch(
-      `${pathsRoutesAPI.mainRouteAPI}${pathsRoutesAPI.advisorAPI}/${id}`,
+      `${pathsRoutesProject.mainRouteAPI}${pathsRoutesProject.advisorAPI}/${id}`,
       {
         method: 'PATCH',
         headers: {

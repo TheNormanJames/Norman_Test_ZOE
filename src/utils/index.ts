@@ -1,4 +1,4 @@
-export const pathsRoutesAPI = {
+export const pathsRoutesProject = {
   mainRoutePage: 'http://localhost:3000',
   advisorsPage: '/advisors',
   mainRouteAPI: 'http://localhost:3001',
