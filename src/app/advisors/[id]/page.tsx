@@ -1,5 +1,4 @@
 import { pathsRoutesProject } from '@/utils';
-import React from 'react';
 import { Advisor } from '../../../types/index';
 import style from './page.module.css';
 import { redirect } from 'next/navigation';
@@ -7,20 +6,24 @@ import { deleteAdvisor } from '@/actions';
 import ModalFormAdvisor from '@/components/advisor/ModalFormAdvisor';
 import Link from 'next/link';
 
+type CustomPageProps = {
+  params: { id: string };
+  searchParams?: { edit?: string };
+};
+
 export default async function AdvisorPage({
   params,
   searchParams,
-}: {
-  params: { id: string };
-  searchParams: { edit?: string };
-}) {
+}: CustomPageProps & { __pageProps?: any }) {
   const advisorDetails = await fetch(
-    pathsRoutesProject.mainRouteAPI +
-      pathsRoutesProject.advisorAPI +
-      `/${params.id}`
+    `${pathsRoutesProject.mainRouteAPI}${pathsRoutesProject.advisorAPI}/${params.id}`
   );
+
+  if (!advisorDetails.ok) {
+    redirect('/error');
+  }
+
   const data: Advisor = await advisorDetails.json();
-  console.log(data);
 
   const handleDelete = async () => {
     'use server';

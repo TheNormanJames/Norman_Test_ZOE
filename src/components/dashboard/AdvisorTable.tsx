@@ -65,7 +65,7 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
         advisor.name.toLowerCase().includes(searchParams.toLowerCase()) ||
         advisor.income.toString().includes(searchParams.toLowerCase())
     );
-    console.log(result);
+    // console.log(result);
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;

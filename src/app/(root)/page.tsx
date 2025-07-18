@@ -11,7 +11,7 @@ export default function Home() {
       {/* <header className={styles.header}> */}
       {/* </header> */}
       <div className={styles.logo}>
-        <Image src={'/Zoe_logo.svg'} fill alt="Logo" />
+        <Image src={'/Zoe_logo.svg'} fill alt="Logo" priority />
       </div>
       <main className={styles.main}>
         <div className={styles.iconHome}>

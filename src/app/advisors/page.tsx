@@ -13,7 +13,7 @@ type DashboardPageProps = {
 export default async function DashboardPage({
   searchParams,
 }: DashboardPageProps) {
-  const { income: incomeParam, new_advisor } = searchParams;
+  const { income: incomeParam, new_advisor } = await searchParams;
   // console.log(incomeParam, 'incomeParam');
   if (incomeParam === undefined) {
     redirect('/');

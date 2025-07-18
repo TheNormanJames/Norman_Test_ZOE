@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  webpack: (config) => {
+    config.cache = false;
+    return config;
+  },
+  experimental: {
+    workerThreads: false,
+  },
 };
 
 export default nextConfig;
