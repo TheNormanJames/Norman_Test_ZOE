@@ -11,10 +11,14 @@
 
  .btnContainer {
   display: flex;
-  position: absolute;
+  align-items: center;
   gap: 1.5rem;
   top: 2.5rem;
   right: 2.5rem;
+
+  @media screen and (min-width: 768px) {
+   position: absolute;
+  }
  }
 
 
@@ -26,8 +30,9 @@
 
  .advisorHeader {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
+  gap: clamp(1rem, 2vw + .5rem, 2rem);
   padding-bottom: 1rem;
   border-bottom: 1px solid color-mix(in srgb, currentColor 30%, transparent);
   margin-bottom: 2rem;
@@ -48,10 +53,16 @@
  }
 
  .advisorDetail {
-  display: flex;
   width: 100%;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  gap: .5rem;
+
+  @media screen and (min-width: 768px) {
+   flex-direction: row;
+   align-items: center;
+  }
 
   h3 {
    font-size: clamp(20px, 2vw + .5rem, 20px);

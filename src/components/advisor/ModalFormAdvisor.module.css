@@ -12,6 +12,8 @@
   margin-inline: auto;
   color: var(--primaryTextColor);
   border-radius: var(--borderRadius);
+  overflow: auto;
+  max-height: 90vh;
  }
 
  .modalName {
@@ -22,11 +24,12 @@
  }
 
  .modalDetails {
-  padding: 3rem;
+  padding: clamp(2rem, 2vw + .5rem, 3rem);
  }
 
  .imageContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: start;
   margin-bottom: 1em;
@@ -46,7 +49,11 @@
   >label {
    flex-basis: 200px;
    flex-grow: 1;
-   max-width: 240px;
+
+   @media screen and (min-width: 768px) {
+    max-width: 240px;
+
+   }
 
    &:last-child {
     max-width: initial;
@@ -59,13 +66,60 @@
    width: 100%;
    margin-top: .5rem;
   }
+
+
+ }
+
+ .fileInput label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: 1px solid var(--primaryColor);
+  padding: 1rem 2rem;
+  border-radius: var(--borderRadius);
+  color: var(--primaryColor);
+  font-size: clamp(14px, 2vw + .5rem, 14px);
+
+  &:hover {
+   background-color: var(--primaryColor);
+   color: var(--white);
+  }
+ }
+
+ .file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+ }
+
+ .btnDelete {
+  font-family: var(--font-rubik);
+  /* border: 1px solid #F67574; */
+  background-color: transparent;
+  color: #F67574;
+  text-transform: capitalize;
+  font-size: clamp(14px, 2vw + .5rem, 14px);
+
+  &:hover {
+   background-color: #F67574;
+   color: var(--white);
+
+  }
  }
 
  .footer {
   padding: 1em;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   gap: 1em;
   border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+
+  @media screen and (min-width: 768px) {
+   justify-content: end;
+
+  }
  }
 }

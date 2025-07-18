@@ -13,7 +13,7 @@ type DashboardPageProps = {
 export default async function DashboardPage({
   searchParams,
 }: DashboardPageProps) {
-  const { income: incomeParam } = searchParams;
+  const { income: incomeParam, new_advisor } = searchParams;
   // console.log(incomeParam, 'incomeParam');
   if (incomeParam === undefined) {
     redirect('/');
@@ -65,7 +65,7 @@ export default async function DashboardPage({
           <AdvisorTable advisors={filteredAdvisors} income={income} />
         )}
       </main>
-      {searchParams.new_advisor === 'true' && (
+      {new_advisor === 'true' && (
         <ModalFormAdvisor isEditMode={false} data={{}} />
       )}
     </div>

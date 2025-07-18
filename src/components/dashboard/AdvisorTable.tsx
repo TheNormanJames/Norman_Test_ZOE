@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Advisor } from '@/types';
 import styles from './AdvisorTable.module.css';
 import Link from 'next/link';
@@ -41,7 +41,7 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
     // console.log(filterAdvisors);
   };
 
-  const filterAdvisors = () => {
+  const filterAdvisors = useMemo(() => {
     let result = [...advisors];
     // console.log(result);
     if (typeSort) {
@@ -65,12 +65,13 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
         advisor.name.toLowerCase().includes(searchParams.toLowerCase()) ||
         advisor.income.toString().includes(searchParams.toLowerCase())
     );
+    console.log(result);
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
 
     return result.slice(startIndex, endIndex);
-  };
+  }, [advisors, typeSort, searchParams]);
   const updateParams = (newParams: Record<string, string>) => {
     const params = new URLSearchParams(paramsURL.toString());
     // params.set('order', typeSort.direction);
@@ -120,7 +121,7 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
                 className={styles.tableHeader}
                 onClick={() => handleSort('name')}
               >
-                Advisor Name
+                Advisor Name{' '}
                 {typeSort.key === 'name' &&
                   (typeSort.direction === 'asc' ? '↑' : '↓')}
               </th>
@@ -128,14 +129,14 @@ export default function AdvisorTable({ advisors, income }: AdvisorTableProps) {
                 className={styles.tableHeader}
                 onClick={() => handleSort('income')}
               >
-                Income
+                Income{' '}
                 {typeSort.key === 'income' &&
                   (typeSort.direction === 'asc' ? '↑' : '↓')}
               </th>
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
-            {filterAdvisors().map((advisor) => {
+            {filterAdvisors.map((advisor) => {
               const url = `${pathsRoutesProject.advisorsPage}/${advisor.id}`;
               return (
                 <tr

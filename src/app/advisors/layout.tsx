@@ -1,14 +1,11 @@
 import Image from 'next/image';
-import { Geist, Geist_Mono } from 'next/font/google';
 import '../globals.css';
+import { Rubik } from 'next/font/google';
+import style from './layout.module.css';
+import Link from 'next/link';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const rubik = Rubik({
+  variable: '--font-rubik',
   subsets: ['latin'],
 });
 
@@ -17,18 +14,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <html lang="en">
         <body
-          className={`${geistSans.className} ${geistMono.className}`}
+          className={`${rubik.className}`}
           style={{ background: '#fbfbfd' }}
         >
-          <header className="HeaderMain">
-            <div className="Logo">
+          <header className={style.HeaderMain}>
+            <Link href={'/'} className="Logo">
               <Image
                 src={'/Zoe_logo.svg'}
                 width={100}
                 height={100}
                 alt="Logo"
               />
-            </div>
+            </Link>
           </header>
           {children}
         </body>

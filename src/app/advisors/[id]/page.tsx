@@ -54,7 +54,7 @@ export default async function AdvisorPage({
         <div className={style.advisorDetails}>
           <div className={style.advisorDetail}>
             <h3>Id Number</h3>
-            <p>{data.id}</p>
+            <p>{data.idNumber}</p>
           </div>
           <div className={style.advisorDetail}>
             <h3>Income</h3>

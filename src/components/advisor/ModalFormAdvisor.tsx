@@ -55,14 +55,26 @@ export default function ModalFormAdvisor({
               {/* <button type="button" className="btnEdit">
                 Upload Picture
               </button> */}
-              <input
-                type="file"
-                name="avatar"
-                id=""
-                className="btnEdit"
-                // defaultValue={isEditMode ? data?.avatar : '/IconHome.svg'}
-              />
-              <button type="button" className="btnDelete">
+              <div className={styles.fileInput}>
+                <input
+                  type="file"
+                  id="file"
+                  name="avatar"
+                  className={styles.file}
+                />
+                <label htmlFor="file">Upload Picture</label>
+              </div>
+              {/* <label htmlFor="">
+                Upload Picture
+                <input
+                  type="file"
+                  name="avatar"
+                  id=""
+                  className={styles.file}
+                  // defaultValue={isEditMode ? data?.avatar : '/IconHome.svg'}
+                />
+              </label> */}
+              <button type="button" className={`btnDelete ${styles.btnDelete}`}>
                 remove
               </button>
             </div>

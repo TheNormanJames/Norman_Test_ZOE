@@ -6,7 +6,6 @@ export async function getFormDataHome(formData: FormData) {
   const income = formData.get('income') as string;
 
   const incomeNumber = Number(income);
-  // todo: Mirar para agregar un regex
 
   // Es un número?
   if (isNaN(incomeNumber)) {

@@ -5,10 +5,18 @@
 
 .topBarMain {
  display: flex;
+ flex-wrap: wrap;
  justify-content: space-between;
  align-items: center;
+ gap: 1rem;
  /* margin-bottom: 1em; */
  padding: 1rem 2rem;
+
+ >* {
+  flex-basis: 280px;
+  flex-grow: 1;
+  max-width: 400px;
+ }
 }
 
 .subheading {
@@ -24,9 +32,9 @@
  font-size: 1rem;
 }
 
-.tableContainer {
- overflow-x: auto;
-}
+/* .tableContainer {
+ overflow-x: scroll;
+ } */
 
 .table {
  width: 100%;
@@ -36,16 +44,24 @@
 
 .tableHeader {
  background-color: #f8f9fa;
- padding: 1rem 2em;
+ padding: 1rem 1.5em;
  text-align: left;
  font-weight: 600;
  color: #495057;
  cursor: pointer;
+
+ @media screen and (min-width: 768px) {
+  padding: 1rem 2em;
+ }
 }
 
 .tableBody {
  td {
-  padding: 1em 2em;
+  padding: 1em 1.5em;
+
+  @media screen and (min-width: 768px) {
+   padding: 1rem 2em;
+  }
  }
 }
 
@@ -94,9 +110,13 @@
 }
 
 .paginationInfo {
- position: absolute;
- left: 2rem;
  color: var(--color_TextParagraph);
+
+ @media screen and (min-width: 768px) {
+  position: absolute;
+  left: 2rem;
+
+ }
 }
 
 .paginationButtons {
